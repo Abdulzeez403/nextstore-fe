@@ -81,8 +81,6 @@ body {
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-    --sidebar-width: 240px;
-    --sidebar-width-collapsed: 64px;
   }
 }
 
@@ -92,20 +90,5 @@ body {
   }
   body {
     @apply bg-background text-foreground;
-  }
-}
-
-.sidebar-expanded {
-  width: var(--sidebar-width);
-}
-
-.sidebar-collapsed {
-  width: var(--sidebar-width-collapsed);
-}
-
-@media (max-width: 768px) {
-  .sidebar-expanded,
-  .sidebar-collapsed {
-    width: 100%;
   }
 }

@@ -25,17 +25,6 @@ const productSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(createProduct.pending, (state) => {
-        state.loading = true;
-        state.message = "Creating product...";
-      })
-      .addCase(createProduct.fulfilled, (state) => {
-        state.loading = false;
-      })
-      .addCase(createProduct.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message || "Failed to create product";
-      })
       .addCase(fetchProducts.pending, (state) => {
         state.loading = true;
       })

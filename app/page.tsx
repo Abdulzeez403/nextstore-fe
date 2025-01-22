@@ -1,29 +1,30 @@
 "use client";
+import react, { useEffect } from "react";
+import { HeroSection } from "@/components/hero-section";
+import { FeaturedCategories } from "@/components/featured-categories";
+import { FeaturedProducts } from "@/components/featured-products";
+import { Testimonials } from "@/components/testimonials";
+import { useSelector, useDispatch } from "react-redux";
+import { AppDispatch, RootState } from "@/lib/store";
 
-import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import SignIn from "./auth/signin/page";
-import { useAuth } from "@/hooks/use-auth";
+import { fetchProducts } from "@/lib/features/product/productThunk";
 
-export default function AuthPage() {
-  const { isLoading, isAuthenticated } = useAuth();
-  const router = useRouter();
+export default function HomePage() {
+  const { loading, error, items } = useSelector(
+    (state: RootState) => state.product
+  );
+  const dispatch = useDispatch<AppDispatch>();
 
-  // Wait for the session to be loaded
-  if (isLoading) {
-    return <h2>Loading...</h2>;
-  }
-
-  // Redirect if the user is authenticated
-  if (isAuthenticated) {
-    router.push("/admin");
-  }
-
-  // console.log(session);
+  useEffect(() => {
+    dispatch(fetchProducts());
+    console.log(items, "value...");
+  }, []);
   return (
-    <div className="flex-1 space-y-4">
-      <SignIn />
-    </div>
+    <>
+      <HeroSection />
+      <FeaturedCategories />
+      <FeaturedProducts products={items} />
+      <Testimonials />
+    </>
   );
 }

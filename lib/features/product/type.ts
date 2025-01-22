@@ -1,5 +1,5 @@
 export interface IProduct {
-  id?: string;
+  _id?: string;
   name: string;
   description: string;
   price: number;
@@ -10,6 +10,8 @@ export interface IProduct {
   rating?: number;
   numReviews?: number;
   specifications?: ISpecification[];
+  sizes?: string[];
+  colors?: string[];
 }
 
 export interface IImage {
@@ -20,6 +22,7 @@ export interface IImage {
 }
 
 export interface ISpecification {
+  _id: string;
   key: string;
   value: string;
 }
