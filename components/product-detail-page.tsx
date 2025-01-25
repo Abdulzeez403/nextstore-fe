@@ -55,7 +55,7 @@ export function ProductDetailsPage({ product: data }: ProductDetailsPageProps) {
       />
       <div className="mt-8 grid gap-8 md:grid-cols-2">
         {product?.images && (
-          <ImageGallery images={product?.images.map((image) => image.url)} />
+          <ImageGallery images={product?.images.map((image) => image)} />
         )}
         <div className="space-y-6">
           <ProductInfo

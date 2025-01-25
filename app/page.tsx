@@ -23,7 +23,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <FeaturedCategories />
-      <FeaturedProducts products={items} />
+      <FeaturedProducts products={items} isLoading={loading} />
       <Testimonials />
     </>
   );

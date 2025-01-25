@@ -9,18 +9,18 @@ export const FeaturedCategoriesData: ICategoryData[] = [
   {
     title: "Phones",
     image: "/phonenew.jpg",
-    link: "/products",
+    link: `/products/${encodeURIComponent("phones")}`,
     badge: "Popular",
   },
   {
     title: "Laptops",
     image: "/laptopnew.jpg",
-    link: "/products",
+    link: `/products/${encodeURIComponent("laptops")}`,
   },
   {
     title: "Accessories",
     image: "/headsetnew.jpg",
-    link: "/products",
+    link: `/products/${encodeURIComponent("accessories")}`,
     badge: "New",
   },
   {

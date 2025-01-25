@@ -6,7 +6,7 @@ export interface IProduct {
   category: string;
   tag: string;
   stock: number;
-  images?: IImage[];
+  images?: string[];
   rating?: number;
   numReviews?: number;
   specifications?: ISpecification[];

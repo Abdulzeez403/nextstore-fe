@@ -37,7 +37,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 className="relative aspect-square overflow-hidden"
               >
                 <Image
-                  src={image.url}
+                  src={image}
                   alt={`${name} - Image ${index + 1}`}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

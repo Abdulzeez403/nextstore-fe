@@ -24,7 +24,7 @@ export function FeaturedCategories() {
           {FeaturedCategoriesData.map((category) => (
             <Link
               key={category.title}
-              href={category.link}
+              href={`/products?category=${encodeURIComponent(category.title)}`}
               className="group relative m-2 block overflow-hidden rounded-lg transition-all duration-300 ease-in-out hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             >
               <div className="relative aspect-square ">

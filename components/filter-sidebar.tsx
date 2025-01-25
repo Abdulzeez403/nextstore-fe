@@ -1,57 +1,60 @@
-import { useState } from 'react'
-import { Slider } from '@/components/ui/slider'
-import { Checkbox } from '@/components/ui/checkbox'
+import { useState } from "react";
+import { Slider } from "@/components/ui/slider";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface FilterSidebarProps {
-  categories: string[]
-  brands: string[]
-  onFilterChange: (filters: any) => void
+  categories: string[];
+  // brands: string[]
+  onFilterChange: (filters: any) => void;
 }
 
-export function FilterSidebar({ categories, brands, onFilterChange }: FilterSidebarProps) {
-  const [priceRange, setPriceRange] = useState([0, 1000])
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
-  const [selectedBrands, setSelectedBrands] = useState<string[]>([])
-  const [selectedRatings, setSelectedRatings] = useState<number[]>([])
+export function FilterSidebar({
+  categories,
+  onFilterChange,
+}: FilterSidebarProps) {
+  const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  // const [selectedBrands, setSelectedBrands] = useState<string[]>([])
+  const [selectedRatings, setSelectedRatings] = useState<number[]>([]);
 
   const handlePriceChange = (value: number[]) => {
-    setPriceRange(value)
-    updateFilters({ priceRange: value })
-  }
+    setPriceRange(value);
+    updateFilters({ priceRange: value });
+  };
 
   const handleCategoryChange = (category: string, checked: boolean) => {
     const updatedCategories = checked
       ? [...selectedCategories, category]
-      : selectedCategories.filter((c) => c !== category)
-    setSelectedCategories(updatedCategories)
-    updateFilters({ categories: updatedCategories })
-  }
+      : selectedCategories.filter((c) => c !== category);
+    setSelectedCategories(updatedCategories);
+    updateFilters({ categories: updatedCategories });
+  };
 
-  const handleBrandChange = (brand: string, checked: boolean) => {
-    const updatedBrands = checked
-      ? [...selectedBrands, brand]
-      : selectedBrands.filter((b) => b !== brand)
-    setSelectedBrands(updatedBrands)
-    updateFilters({ brands: updatedBrands })
-  }
+  // const handleBrandChange = (brand: string, checked: boolean) => {
+  //   const updatedBrands = checked
+  //     ? [...selectedBrands, brand]
+  //     : selectedBrands.filter((b) => b !== brand)
+  //   setSelectedBrands(updatedBrands)
+  //   updateFilters({ brands: updatedBrands })
+  // }
 
   const handleRatingChange = (rating: number, checked: boolean) => {
     const updatedRatings = checked
       ? [...selectedRatings, rating]
-      : selectedRatings.filter((r) => r !== rating)
-    setSelectedRatings(updatedRatings)
-    updateFilters({ ratings: updatedRatings })
-  }
+      : selectedRatings.filter((r) => r !== rating);
+    setSelectedRatings(updatedRatings);
+    updateFilters({ ratings: updatedRatings });
+  };
 
   const updateFilters = (newFilters: any) => {
     onFilterChange({
       priceRange,
       categories: selectedCategories,
-      brands: selectedBrands,
+      // brands: selectedBrands,
       ratings: selectedRatings,
       ...newFilters,
-    })
-  }
+    });
+  };
 
   return (
     <div className="space-y-6">
@@ -79,7 +82,9 @@ export function FilterSidebar({ categories, brands, onFilterChange }: FilterSide
               <Checkbox
                 id={`category-${category}`}
                 checked={selectedCategories.includes(category)}
-                onCheckedChange={(checked) => handleCategoryChange(category, checked as boolean)}
+                onCheckedChange={(checked) =>
+                  handleCategoryChange(category, checked as boolean)
+                }
               />
               <label htmlFor={`category-${category}`} className="ml-2 text-sm">
                 {category}
@@ -89,7 +94,7 @@ export function FilterSidebar({ categories, brands, onFilterChange }: FilterSide
         </div>
       </div>
 
-      <div>
+      {/* <div>
         <h3 className="mb-2 text-lg font-semibold">Brands</h3>
         <div className="space-y-2">
           {brands.map((brand) => (
@@ -105,7 +110,7 @@ export function FilterSidebar({ categories, brands, onFilterChange }: FilterSide
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       <div>
         <h3 className="mb-2 text-lg font-semibold">Ratings</h3>
@@ -115,7 +120,9 @@ export function FilterSidebar({ categories, brands, onFilterChange }: FilterSide
               <Checkbox
                 id={`rating-${rating}`}
                 checked={selectedRatings.includes(rating)}
-                onCheckedChange={(checked) => handleRatingChange(rating, checked as boolean)}
+                onCheckedChange={(checked) =>
+                  handleRatingChange(rating, checked as boolean)
+                }
               />
               <label htmlFor={`rating-${rating}`} className="ml-2 text-sm">
                 {rating}+ Stars
@@ -125,6 +132,5 @@ export function FilterSidebar({ categories, brands, onFilterChange }: FilterSide
         </div>
       </div>
     </div>
-  )
+  );
 }
-
