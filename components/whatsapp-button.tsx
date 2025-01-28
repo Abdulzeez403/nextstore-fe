@@ -5,6 +5,7 @@ interface WhatsAppButtonProps {
     title: string;
     price: number;
     sellerPhoneNumber: string;
+    images?: any;
   };
   quantity: number;
   selectedSize: string;
@@ -25,19 +26,23 @@ export function WhatsAppButton({
 }: WhatsAppButtonProps) {
   const generateWhatsAppMessage = () => {
     const message = `
-Hi, I'd like to buy the following product:
-- Name: ${product.title}
-- Price: $${product.price.toFixed(2)}
-- Quantity: ${quantity}
-- Variants: Size: ${selectedSize}, Color: ${selectedColor}
+🛒 *Product Information*
+━━━━━━━━━━━━━━━━━━━━━
+📌 *Name*: ${product.title}
+💰 *Price*: ₦${product.price.toLocaleString("en-NG")}
+📦 *Quantity*: ${quantity}
+🎨 *Color*: ${selectedColor}
 
-Delivery Details:
-- Address: ${userAddress}
-- Phone Number: ${userPhone}
-- Notes: ${userNotes}
+📷 *Image*: [View Image](${product?.images[0]}) 
 
-Please confirm availability and delivery options.
-    `.trim();
+🚚 *Delivery Details*
+━━━━━━━━━━━━━━━━━━━━━
+🏡 *Address*: ${userAddress}
+📞 *Phone*: ${userPhone}
+📝 *Notes*: ${userNotes}
+
+Please confirm availability and delivery options. ✅
+  `.trim();
 
     return encodeURIComponent(message);
   };
@@ -56,7 +61,7 @@ Please confirm availability and delivery options.
   const validateInputs = () => {
     return (
       quantity > 0 &&
-      selectedSize !== "" &&
+      // selectedSize !== "" &&
       selectedColor !== "" &&
       userAddress.trim() !== "" &&
       userPhone.trim() !== ""

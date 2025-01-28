@@ -28,7 +28,7 @@ export function ProductDetailsPage({ product: data }: ProductDetailsPageProps) {
 
   const sizes = ["S", "M", "L"];
 
-  const colors = ["Black", "White", "Blue"];
+  const colors = ["Black", "White", "Blue", "Red", "Grey"];
 
   const handleQuantityChange = (newQuantity: number) => {
     setQuantity(newQuantity);
@@ -48,7 +48,7 @@ export function ProductDetailsPage({ product: data }: ProductDetailsPageProps) {
         items={[
           { label: "Products", href: "/products" },
           {
-            label: product?.name || "",
+            label: product?.name.slice(0, 20) || "",
             href: `/products/${product?._id || ""}`,
           },
         ]}
@@ -62,8 +62,10 @@ export function ProductDetailsPage({ product: data }: ProductDetailsPageProps) {
             title={product?.name || ""}
             price={product?.price || 0}
             rating={product?.rating || 3}
+            stock={product?.stock || 0}
           />
           <AddToCartSection
+            category={product?.category || ""}
             sizes={product?.sizes || sizes}
             colors={product?.colors || colors}
             onQuantityChange={handleQuantityChange}
@@ -113,6 +115,7 @@ export function ProductDetailsPage({ product: data }: ProductDetailsPageProps) {
               title: product?.name || "",
               price: product?.price ?? 0,
               sellerPhoneNumber: "08063249490",
+              images: product?.images?.[0] || "",
             }}
             quantity={quantity}
             selectedSize={selectedSize}

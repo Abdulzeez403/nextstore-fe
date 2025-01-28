@@ -60,7 +60,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           href={`/products/${_id}`}
           className="mb-2 text-sm font-medium text-gray-900 hover:text-primary sm:text-base"
         >
-          {name}
+          {name.length > 20 ? name.slice(0, 25) + "..." : name}
         </Link>
         <div className="mb-2 flex items-center">
           {[...Array(5)].map((_, i) => (
@@ -73,14 +73,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               }`}
             />
           ))}
-          <span className="ml-1 text-xs text-gray-500">
-            ({rating.toFixed(1)})
-          </span>
         </div>
         <div className="mt-auto flex items-center justify-between">
           <div>
             <span className="text-lg font-bold text-primary">
-              N{price.toFixed(2)}
+              ₦{new Intl.NumberFormat("en-NG").format(price)}
             </span>
           </div>
 

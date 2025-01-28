@@ -14,6 +14,7 @@ import {
 interface AddToCartSectionProps {
   sizes?: string[];
   colors: string[];
+  category?: string;
   onAddToCart: (quantity: number, size: string, color: string) => void;
   onQuantityChange: (newQuantity: number) => void;
   onSizeChange: (newSize: string) => void;
@@ -23,6 +24,7 @@ interface AddToCartSectionProps {
 export function AddToCartSection({
   sizes = [],
   colors = [],
+  category,
   onAddToCart,
   onQuantityChange,
   onSizeChange,
@@ -67,23 +69,25 @@ export function AddToCartSection({
           className="w-20"
         />
       </div>
-      <div className="flex items-center space-x-4">
-        <label htmlFor="size" className="font-semibold">
-          Size:
-        </label>
-        <Select value={size} onValueChange={handleSizeChange}>
-          <SelectTrigger className="w-32">
-            <SelectValue placeholder="Select size" />
-          </SelectTrigger>
-          <SelectContent>
-            {sizes?.map((s) => (
-              <SelectItem key={s} value={s}>
-                {s}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
+      {category === "Clothes" && (
+        <div className="flex items-center space-x-4">
+          <label htmlFor="size" className="font-semibold">
+            Size:
+          </label>
+          <Select value={size} onValueChange={handleSizeChange}>
+            <SelectTrigger className="w-32">
+              <SelectValue placeholder="Select size" />
+            </SelectTrigger>
+            <SelectContent>
+              {sizes?.map((s) => (
+                <SelectItem key={s} value={s}>
+                  {s}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      )}
       <div className="flex items-center space-x-4">
         <label htmlFor="color" className="font-semibold">
           Color:
