@@ -5,7 +5,7 @@ interface WhatsAppButtonProps {
     title: string;
     price: number;
     sellerPhoneNumber: string;
-    images?: any;
+    images?: string[]; // Clarify that images is an array of strings
   };
   quantity: number;
   selectedSize: string;
@@ -26,25 +26,22 @@ export function WhatsAppButton({
 }: WhatsAppButtonProps) {
   const generateWhatsAppMessage = () => {
     const message = `
-🛒 *Product Information*
-━━━━━━━━━━━━━━━━━━━━━
-📌 *Name*: ${product.title}
-💰 *Price*: ₦${product.price.toLocaleString("en-NG")}
-📦 *Quantity*: ${quantity}
-🎨 *Color*: ${selectedColor}
+Hi, I'd like to buy the following product:
+- *Name*: **${product.title}**
+- *Price*: ₦${product.price.toLocaleString("en-NG")}
+- *Quantity*: ${quantity}
+- *Color*:${selectedColor}
 
-📷 *Image*: [View Image](${product?.images[0]}) 
+*Delivery Details*:
+- *Address*: ${userAddress}
+- *Phone Number*: ${userPhone}
+- *Notes*: ${userNotes}
 
-🚚 *Delivery Details*
-━━━━━━━━━━━━━━━━━━━━━
-🏡 *Address*: ${userAddress}
-📞 *Phone*: ${userPhone}
-📝 *Notes*: ${userNotes}
-
-Please confirm availability and delivery options. ✅
+Please confirm availability and delivery options.
   `.trim();
 
-    return encodeURIComponent(message);
+    const whatsappURL = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    return whatsappURL;
   };
 
   const handleBuyNow = () => {
@@ -59,13 +56,7 @@ Please confirm availability and delivery options. ✅
   };
 
   const validateInputs = () => {
-    return (
-      quantity > 0 &&
-      // selectedSize !== "" &&
-      selectedColor !== "" &&
-      userAddress.trim() !== "" &&
-      userPhone.trim() !== ""
-    );
+    return userAddress.trim() !== "" && userPhone.trim() !== "";
   };
 
   return (

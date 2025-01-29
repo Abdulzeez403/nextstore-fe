@@ -12,7 +12,7 @@ interface ProductInfoProps {
 export function ProductInfo({ title, price, rating, stock }: ProductInfoProps) {
   return (
     <div className="space-y-4">
-      <h1 className="text-3xl font-bold">{title}</h1>
+      <h1 className="text-lg md:text-3x1 lg:text-3x1 font-bold">{title}</h1>
       <div className="flex items-center space-x-4">
         <div className="flex items-center">
           {[...Array(5)].map((_, i) => (

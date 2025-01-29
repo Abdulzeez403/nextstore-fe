@@ -60,7 +60,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           href={`/products/${_id}`}
           className="mb-2 text-sm font-medium text-gray-900 hover:text-primary sm:text-base"
         >
-          {name.length > 20 ? name.slice(0, 25) + "..." : name}
+          {name.length > 20 ? name.slice(0, 35) + "..." : name}
         </Link>
         <div className="mb-2 flex items-center">
           {[...Array(5)].map((_, i) => (

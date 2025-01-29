@@ -114,8 +114,8 @@ export function ProductDetailsPage({ product: data }: ProductDetailsPageProps) {
             product={{
               title: product?.name || "",
               price: product?.price ?? 0,
-              sellerPhoneNumber: "08063249490",
-              images: product?.images?.[0] || "",
+              sellerPhoneNumber: "+2348063249490",
+              images: product?.images ? [product.images[0]] : [],
             }}
             quantity={quantity}
             selectedSize={selectedSize}

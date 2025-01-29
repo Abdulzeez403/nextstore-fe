@@ -1,5 +1,5 @@
 "use client";
-import react, { useEffect } from "react";
+import { useEffect } from "react";
 import { ProductDetailsPage } from "@/components/product-detail-page";
 import { fetchProductById } from "@/lib/features/product/productThunk";
 import { useSelector, useDispatch } from "react-redux";
@@ -14,10 +14,14 @@ export default function Page({ params }: { params: { id: string } }) {
 
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    dispatch(fetchProductById(params.id));
-  }, [params.id]);
-  if (!data) {
-    return <div>Loading...</div>;
+    // Only fetch the product if it's not already in the store
+    if (!data || data._id !== params.id) {
+      dispatch(fetchProductById(params.id));
+    }
+  }, [dispatch, data, params.id]);
+
+  if (loading) {
+    return <div className="text-center">Loading...</div>;
   }
-  return <ProductDetailsPage product={data} />;
+  return <ProductDetailsPage product={data as any} />;
 }
