@@ -1,27 +1,63 @@
-"use client";
-import { useEffect } from "react";
-import { ProductDetailsPage } from "@/components/product-detail-page";
-import { fetchProductById } from "@/lib/features/product/productThunk";
-import { useSelector, useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "@/lib/store";
+import { fetchProductById } from "@/lib/apis/common/metadataApi";
+import { Metadata } from "next";
+import ProductPageClient from "./detial";
 
-export default function Page({ params }: { params: { id: string } }) {
-  const {
-    loading,
-    error,
-    product: data,
-  } = useSelector((state: RootState) => state.product);
+// Generate metadata dynamically
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  try {
+    // Fetch product data
+    const product = await fetchProductById(params.id);
 
-  const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    // Only fetch the product if it's not already in the store
-    if (!data || data._id !== params.id) {
-      dispatch(fetchProductById(params.id));
-    }
-  }, [dispatch, data, params.id]);
-
-  if (loading) {
-    return <div className="text-center">Loading...</div>;
+    return {
+      title: product.name,
+      description: product.description || "No description available",
+      openGraph: {
+        title: product.name,
+        description: product.description || "No description available",
+        images: [
+          {
+            url: product.images?.[0] || "/default-image.jpg", // Fallback image
+            width: 1200,
+            height: 630,
+            alt: product.name,
+          },
+        ],
+        url: `${process.env.NEXT_PUBLIC_URL}/products/${params.id}`,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: product.name,
+        description: product.description || "No description available",
+        images: [product.images?.[0] || "/default-image.jpg"], // Fallback image
+      },
+    };
+  } catch (error) {
+    console.error("Failed to generate metadata:", error);
+    return {
+      title: "Product Not Found",
+      description: "The product you are looking for does not exist.",
+    };
   }
-  return <ProductDetailsPage product={data as any} />;
+}
+
+// Server component to fetch data and pass it to the client component
+export default async function Page({ params }: { params: { id: string } }) {
+  try {
+    // Fetch product data
+    const product = await fetchProductById(params.id);
+
+    // Pass the product data to the client component
+    return <ProductPageClient product={product} />;
+  } catch (error) {
+    console.error("Failed to fetch product:", error);
+    return (
+      <div className="text-center">
+        Failed to load product. Please try again later.
+      </div>
+    );
+  }
 }

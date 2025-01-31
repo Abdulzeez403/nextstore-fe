@@ -17,7 +17,6 @@ export default function HomePage() {
 
   useEffect(() => {
     dispatch(fetchProducts());
-    console.log(items, "value...");
   }, [dispatch]);
   return (
     <>
