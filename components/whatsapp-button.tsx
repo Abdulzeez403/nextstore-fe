@@ -5,7 +5,7 @@ interface WhatsAppButtonProps {
     title: string;
     price: number;
     sellerPhoneNumber: string;
-    images?: string[]; // Clarify that images is an array of strings
+    images?: string[];
   };
   quantity: number;
   selectedSize: string;
@@ -30,7 +30,7 @@ Hi, I'd like to buy the following product:
 - *Name*: **${product.title}**
 - *Price*: ₦${product.price.toLocaleString("en-NG")}
 - *Quantity*: ${quantity}
-- *Color*:${selectedColor}
+- *Color*: ${selectedColor}
 
 *Delivery Details*:
 - *Address*: ${userAddress}
@@ -38,10 +38,9 @@ Hi, I'd like to buy the following product:
 - *Notes*: ${userNotes}
 
 Please confirm availability and delivery options.
-  `.trim();
+    `.trim();
 
-    const whatsappURL = `https://wa.me/?text=${encodeURIComponent(message)}`;
-    return whatsappURL;
+    return encodeURIComponent(message);
   };
 
   const handleBuyNow = () => {
@@ -50,8 +49,8 @@ Please confirm availability and delivery options.
       return;
     }
 
-    const message = generateWhatsAppMessage();
-    const whatsappUrl = `https://wa.me/${product.sellerPhoneNumber}?text=${message}`;
+    const encodedMessage = generateWhatsAppMessage();
+    const whatsappUrl = `https://wa.me/${product.sellerPhoneNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, "_blank");
   };
 

@@ -11,6 +11,8 @@ export async function generateMetadata({
   try {
     // Fetch product data
     const product = await fetchProductById(params.id);
+    const baseUrl =
+      process.env.NEXT_PUBLIC_URL || "https://nextstore-drab.vercel.app";
 
     return {
       title: product.name,
@@ -20,19 +22,19 @@ export async function generateMetadata({
         description: product.description || "No description available",
         images: [
           {
-            url: product.images?.[0] || "/default-image.jpg", // Fallback image
+            url: product.images?.[0] || "/placeholder-logo.svg", // Fallback image
             width: 1200,
             height: 630,
             alt: product.name,
           },
         ],
-        url: `${process.env.NEXT_PUBLIC_URL}/products/${params.id}`,
+        url: `${baseUrl}/products/${params.id}`,
       },
       twitter: {
         card: "summary_large_image",
         title: product.name,
         description: product.description || "No description available",
-        images: [product.images?.[0] || "/default-image.jpg"], // Fallback image
+        images: [product.images?.[0] || "/placeholder-logo.svg"],
       },
     };
   } catch (error) {

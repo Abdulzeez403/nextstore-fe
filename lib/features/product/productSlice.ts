@@ -1,6 +1,6 @@
 // src/redux/products/productSlice.js
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchProductById, fetchProducts, createProduct } from "./productThunk";
+import { fetchProductById, fetchProducts } from "./productThunk";
 import { IProduct } from "./type";
 
 interface ProductState {

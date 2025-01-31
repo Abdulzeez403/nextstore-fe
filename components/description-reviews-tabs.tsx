@@ -12,9 +12,15 @@ interface Review {
   date: string;
 }
 
+interface Specification {
+  key: string;
+  value: string;
+  _id: string;
+}
+
 interface DescriptionReviewsTabsProps {
   description: string;
-  specifications: { [key: string]: string };
+  specifications: Specification[]; // Array of specifications
   reviews?: Review[];
 }
 
@@ -38,7 +44,7 @@ export function DescriptionReviewsTabs({
       <TabsContent value="specifications" className="mt-4">
         <table className="w-full">
           <tbody>
-            {specifications?.map(({ key, value, _id }) => (
+            {specifications.map(({ key, value, _id }) => (
               <tr key={_id} className="border-b">
                 <td className="py-2 font-semibold">{key}</td>
                 <td className="py-2">{value}</td>
