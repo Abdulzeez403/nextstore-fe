@@ -12,10 +12,10 @@ const nextConfig = {
   webpack: (config, { isServer }) => {
     config.resolve.fallback = {
       ...config.resolve.fallback,
-      punycode: require.resolve("punycode/"),
+      punycode: require.resolve("punycode/"), // ✅ Now it works
     };
     return config;
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig; // ✅ Use `module.exports` instead of `export default`
