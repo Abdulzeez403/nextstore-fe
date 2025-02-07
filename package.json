@@ -1,5 +1,5 @@
 {
-  "name": "my-v0-project",
+  "name": "NextStore",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -51,7 +51,6 @@
     "framer-motion": "^11.18.0",
     "input-otp": "1.4.1",
     "lucide-react": "^0.454.0",
-    "my-v0-project": "file:",
     "next": "^14.2.23",
     "next-auth": "latest",
     "next-themes": "latest",
