@@ -10,7 +10,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   try {
     // Fetch product data
-    const product = await fetchProductById(params.id);
+    const product = await fetchProductById(params?.id);
     const baseUrl =
       process.env.NEXT_PUBLIC_URL || "https://nextstore-drab.vercel.app";
 
@@ -28,7 +28,7 @@ export async function generateMetadata({
             alt: product.name,
           },
         ],
-        url: `${baseUrl}/products/${params.id}`,
+        url: `${baseUrl}/products/${params?.id}`,
       },
       twitter: {
         card: "summary_large_image",
@@ -50,7 +50,7 @@ export async function generateMetadata({
 export default async function Page({ params }: { params: { id: string } }) {
   try {
     // Fetch product data
-    const product = await fetchProductById(params.id);
+    const product = await fetchProductById(params?.id);
 
     // Pass the product data to the client component
     return <ProductPageClient product={product} />;
