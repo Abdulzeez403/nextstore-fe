@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import CarouselImage from "../public/nextcarousel1.jpg";
+import CarouselImage from "../public/feet.jpg";
 
 export function HeroSection() {
   return (
@@ -11,7 +11,7 @@ export function HeroSection() {
           src={CarouselImage}
           alt="Hero background"
           width={1920}
-          height={800}
+          height={500}
           priority
           className="h-full w-full object-cover brightness-[0.7]"
         />
@@ -20,7 +20,7 @@ export function HeroSection() {
         <div className=" flex min-h-[400px] flex-col items-center justify-center  px-4 py-16 text-center sm:min-h-[500px] md:min-h-[600px] lg:min-h-[700px]">
           <div className="max-w-3xl space-y-4 sm:space-y-6 md:space-y-8 ">
             <h1 className="text-3xl font-bold tracking-tighter text-white sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-              Discover the Best Deals on Phones, Laptops, and More
+              Discover the Best Deals on Neat Sneakers, and More
             </h1>
             <p className="mx-auto max-w-[700px] text-base text-white/90 sm:text-lg md:text-xl">
               Shop the latest products at unbeatable prices

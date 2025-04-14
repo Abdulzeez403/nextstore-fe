@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Search, ShoppingCart, User, Menu, X } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -71,7 +70,7 @@ export function Header() {
             className="aspect-[3/1] h-8 w-auto"
           /> */}
 
-            <h3 className=" font-bold text-2xl">NextStore</h3>
+            <h3 className=" font-bold text-2xl">NexStore</h3>
           </Link>
           <div className="flex flex-1 items-center justify-end space-x-2 md:justify-between">
             <nav className="hidden space-x-6 md:flex">

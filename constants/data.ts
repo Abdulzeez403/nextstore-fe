@@ -8,24 +8,24 @@ interface ICategoryData {
 export const FeaturedCategoriesData: ICategoryData[] = [
   {
     title: "Phones",
-    image: "/phonenew.jpg",
+    image: "/1.jpg",
     link: `/products/${encodeURIComponent("phones")}`,
     badge: "Popular",
   },
   {
     title: "Laptops",
-    image: "/laptopnew.jpg",
+    image: "/2.jpg",
     link: `/products/${encodeURIComponent("laptops")}`,
   },
   {
     title: "Accessories",
-    image: "/headsetnew.jpg",
+    image: "/3.jpg",
     link: `/products/${encodeURIComponent("accessories")}`,
     badge: "New",
   },
   {
     title: "Others",
-    image: "/accessoriesnew.jpg",
+    image: "/4.jpg",
     link: "/products",
   },
 ];
